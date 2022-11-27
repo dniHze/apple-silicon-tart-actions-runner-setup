@@ -12,9 +12,14 @@ variable "xcode_version" {
   default = "14.0.1"
 }
 
+variable "os_version" {
+  type =  string
+  default = "monterey"
+}
+
 source "tart-cli" "tart" {
-  vm_base_name = "ghcr.io/cirruslabs/macos-monterey-base:latest"
-  vm_name      = "monterey-xcode:${var.xcode_version}"
+  vm_base_name = "ghcr.io/cirruslabs/macos-${var.os_version}-base:latest"
+  vm_name      = "${var.os_version}-xcode:${var.xcode_version}"
   cpu_count    = 6
   memory_gb    = 12
   disk_size_gb = 80
