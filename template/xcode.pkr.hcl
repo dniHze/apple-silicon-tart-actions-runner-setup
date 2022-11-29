@@ -12,6 +12,11 @@ variable "xcode_version" {
   default = "14.0.1"
 }
 
+variable "ios_latest" {
+  type =  string
+  default = "16.0"
+}
+
 variable "os_version" {
   type =  string
   default = "monterey"
@@ -73,7 +78,7 @@ build {
       "source ~/.zprofile",
       "brew install libimobiledevice ideviceinstaller ios-deploy fastlane",
       "sudo gem update",
-      "sudo gem install cocoapods",
+      "sudo gem install cocoapods xcpretty",
       "sudo gem uninstall --ignore-dependencies ffi && sudo gem install ffi -- --enable-libffi-alloc"
     ]
   }
@@ -81,6 +86,23 @@ build {
     inline = [
       "source ~/.zprofile",
       "brew install chargepoint/xcparse/xcparse",
+    ]
+  }
+  # Create simulators
+  provisioner "shell" {
+    inline = [
+      "source ~/.zprofile",
+      "xcrun simctl create \"iPhone 11\" com.apple.CoreSimulator.SimDeviceType.iPhone-11 iOS${var.ios_latest}",
+      "xcrun simctl create \"iPhone 11 Pro\" com.apple.CoreSimulator.SimDeviceType.iPhone-11-Pro iOS${var.ios_latest}",
+      "xcrun simctl create \"iPhone 11 Pro Max\" com.apple.CoreSimulator.SimDeviceType.iPhone-11-Pro-Max iOS${var.ios_latest}",
+      "xcrun simctl create \"iPhone 12 mini\" com.apple.CoreSimulator.SimDeviceType.iPhone-12-mini iOS${var.ios_latest}",
+      "xcrun simctl create \"iPhone 12\" com.apple.CoreSimulator.SimDeviceType.iPhone-12 iOS${var.ios_latest}",
+      "xcrun simctl create \"iPhone 12 Pro\" com.apple.CoreSimulator.SimDeviceType.iPhone-12-Pro iOS${var.ios_latest}",
+      "xcrun simctl create \"iPhone 12 Pro Max\" com.apple.CoreSimulator.SimDeviceType.iPhone-12-Pro-Max iOS${var.ios_latest}",
+      "xcrun simctl create \"iPhone 13 Pro\" com.apple.CoreSimulator.SimDeviceType.iPhone-13-Pro iOS${var.ios_latest}",
+      "xcrun simctl create \"iPhone 13 Pro Max\" com.apple.CoreSimulator.SimDeviceType.iPhone-13-Pro-Max iOS${var.ios_latest}",
+      "xcrun simctl create \"iPhone 13 mini\" com.apple.CoreSimulator.SimDeviceType.iPhone-13-mini iOS${var.ios_latest}",
+      "xcrun simctl create \"iPhone 13\" com.apple.CoreSimulator.SimDeviceType.iPhone-13 iOS${var.ios_latest}",
     ]
   }
   provisioner "shell" {
