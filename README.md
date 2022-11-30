@@ -1,8 +1,8 @@
 # Setup macOS GitHub Actions Runners with [Tart](https://github.com/cirruslabs/tart)
 
-Work in progress. Set of scripts and images to automate VMs with Actions Runners on Apple Silicon devices.
+Work in progress. Set of scripts and images to automate VMs with Actions Runners on Apple Silicon devices
 
-## Pulling the image
+## Pulling VM
 
 ```bash
 # Making sure tart is installed
@@ -15,7 +15,7 @@ tart set monterey-runner --cpu 4 --memory 8192
 tart run monterey-runner
 ```
 
-## Configuring actions runner manually
+## Configure runner manually
 
 ```bash
 # run VM in background
