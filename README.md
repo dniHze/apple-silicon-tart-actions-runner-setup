@@ -1,6 +1,6 @@
 # Setup macOS GitHub Actions Runners with [Tart](https://github.com/cirruslabs/tart)
 
-Work in progress. Set of scripts and images to automate VMs with Actions Runners on Apple Silicon devices
+Work in progress. Set of scripts and images to automate VMs with Actions Runners on Apple Silicon devices.
 
 ## Pulling the image
 
@@ -8,7 +8,7 @@ Work in progress. Set of scripts and images to automate VMs with Actions Runners
 # Making sure tart is installed
 brew install tart
 # Cloning VM
-tart clone monterey-xcode:14.0.1 monterey-runner
+tart clone ghcr.io/dnihze/monterey-xcode::14.0.1 monterey-runner
 # By default, VM uses 6 Cores and 12 GB of RAM. You can rescale it like this
 tart set monterey-runner --cpu 4 --memory 8192
 # Starting VM
